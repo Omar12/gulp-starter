@@ -1,7 +1,7 @@
-@import '_reset';
+@import "compass/reset";
 
 html, body {
   height: 100%;
-  background: #333 url('../img/baracktocat.jpg') no-repeat 50% 50%;
+  background: #333;
   background-size: 50%;
 }

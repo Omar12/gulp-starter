@@ -2,7 +2,7 @@
 
 var gulp         = require('gulp')
   , gutil        = require('gulp-util')
-  , sass         = require('gulp-sass')
+  , compass      = require('gulp-compass')
   , refresh      = require('gulp-livereload')
   , prefix       = require('gulp-autoprefixer')
   , minify       = require('gulp-minify-css')
@@ -50,11 +50,13 @@ var paths = {
 // Tasks
 
 gulp.task('styles', function(){
-  gulp.src(paths.app.scss + '/**/*.scss')
-    .pipe(sass({
-      errLogToConsole: true
+  return gulp.src(paths.app.scss + '/**/*.scss')
+    .pipe(compass({
+      config_file: './config.rb',
+      css: paths.app.css,
+      sass: paths.app.scss
     }))
-    .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
+    // .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(paths.app.css));
 });
 
@@ -93,10 +95,12 @@ gulp.task('build', ['clean'], function(){
 
   // Styles
   gulp.src(paths.app.scss + '/**/*.scss')
-    .pipe(sass({
-      errLogToConsole: true
+    .pipe(compass({
+      config_file: './config.rb',
+      css: paths.app.css,
+      sass: paths.app.scss
     }))
-    .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
+    // .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(minify())
     .pipe(gulp.dest(paths.build.css));
 
