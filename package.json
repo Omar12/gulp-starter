@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Juri Saltbacka",
   "scripts": {
-    "install": "gem update --system && gem install compass && bower install && && gulp"
+    "install": "gem update --system && gem install compass && bower install && gulp"
   },
   "devDependencies": {
     "gulp-livereload": "~1.1.1",
