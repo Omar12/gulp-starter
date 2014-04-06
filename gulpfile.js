@@ -1,19 +1,20 @@
 "use strict";
 
-var gulp         = require('gulp')
-  , gutil        = require('gulp-util')
-  , compass      = require('gulp-compass')
-  , refresh      = require('gulp-livereload')
-  , prefix       = require('gulp-autoprefixer')
-  , minify       = require('gulp-minify-css')
-  , imagemin     = require('gulp-imagemin')
-  , uglify       = require('gulp-uglify')
-  , clean        = require('gulp-rimraf')
-  , tinylr       = require('tiny-lr')
-  , express      = require('express')
-  , path         = require('path')
-  , info         = require('./package.json')
-  , lr;
+var gulp         = require('gulp'),
+    gutil        = require('gulp-util'),
+    compass      = require('gulp-compass'),
+    refresh      = require('gulp-livereload'),
+    prefix       = require('gulp-autoprefixer'),
+    minify       = require('gulp-minify-css'),
+    imagemin     = require('gulp-imagemin'),
+    uglify       = require('gulp-uglify'),
+    clean        = require('gulp-rimraf'),
+    tinylr       = require('tiny-lr'),
+    express      = require('express'),
+    path         = require('path'),
+    processhtml  = require('processhtml'),
+    info         = require('./package.json'),
+    lr;
 
 // Configuration
 
@@ -43,7 +44,7 @@ var paths = {
     js:     './build/js',
     css:    './build/css',
     images: './build/img',
-    lib:    './build/lib'
+    lib:    './build/js/lib.js'
   }
 }
 
@@ -110,7 +111,8 @@ gulp.task('build', ['clean'], function(){
     .pipe(gulp.dest(paths.build.images));
 
   // Libraries
-  gulp.src(paths.app.lib + '/**/*')
+  gulp.src(paths.app.lib + '/**/*.js')
+    .pipe(uglyfy())
     .pipe(gulp.dest(paths.build.lib));
 
   // HTML files
