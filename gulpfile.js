@@ -4,6 +4,7 @@ var gulp         = require('gulp'),
     cache        = require('gulp-cache'),
     gutil        = require('gulp-util'),
     sass         = require('gulp-sass'),
+    watch        = require('gulp-watch'),
     refresh      = require('gulp-livereload'),
     prefix       = require('gulp-autoprefixer'),
     minify       = require('gulp-minify-css'),
@@ -11,6 +12,7 @@ var gulp         = require('gulp'),
     uglify       = require('gulp-uglify'),
     clean        = require('gulp-rimraf'),
     useref       = require('gulp-useref'),
+    concat       = require('gulp-concat')
     tinylr       = require('tiny-lr'),
     express      = require('express'),
     path         = require('path'),
@@ -51,17 +53,8 @@ var paths = {
 
 // Tasks
 
-gulp.task('styles:dev', function(){
-  return gulp.src(paths.app.scss + '/**/*.scss')
-    .pipe(sass({
-      errLogToConsole: true
-    }))
-    .pipe(prefix('last 2 version', '> 5%', 'safari 5', 'ie 8', 'ie 7', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest(paths.app.css));
-});
-
-gulp.task('styles:build', function(){
-  return gulp.src(paths.app.scss + '/**/*.scss')
+gulp.task('styles', function(){
+  return gulp.src(paths.app.scss + '/styles.scss')
     .pipe(sass({
       errLogToConsole: true
     }))
@@ -116,7 +109,9 @@ gulp.task('livereload', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch(paths.app.scss + '/**/*.scss', ['styles']);
+  watch({ glob: paths.app.scss + '/**/*.scss' }, function(){
+    gulp.start('styles');
+  });
   gulp.watch([
       paths.app.images + '/**/*.png',
       paths.app.images + '/**/*.jpg',

@@ -1,5 +1,11 @@
+var AppName = AppName || {};
+
+AppName = {
+  init: function() {
+    console.log('Gulp gulp gulp!');
+  }
+}
+
 $(function(){
-
-  console.log('Hello world!');
-
+  AppName.init();
 });
