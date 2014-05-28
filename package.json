@@ -10,6 +10,7 @@
     "tiny-lr": "latest",
     "gulp": "latest",
     "gulp-util": "latest",
+    "gulp-watch": "latest",
     "gulp-bower": "latest",
     "express": "latest",
     "bower": "latest",
