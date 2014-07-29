@@ -1,7 +1,7 @@
 {
   "name": "gulp-starter",
   "version": "1.0.0",
-  "author": "Juri Saltbacka",
+  "author": "",
   "scripts": {
     "install": "bower install && gulp"
   },
