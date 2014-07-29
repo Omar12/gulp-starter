@@ -1,6 +1,7 @@
-@import 'normalize';
+@import 'variables';
 
-html, body {
-  height: 100%;
-  background: #fdfdfd;
-}
+@import 'mixins/media-queries';
+@import 'lib/normalize';
+
+@import 'base/grid';
+@import 'base/html';

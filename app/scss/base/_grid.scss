@@ -1,0 +1,41 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  // overflow: auto;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 75rem;
+  width: 96%;
+}
+
+
+.row:before,
+.row:after {
+  content: " ";
+  display: table;
+}
+
+.row:after {
+  clear: both;
+}
+
+.row {
+  *zoom: 1;
+}
+
+@include respond-to(large-screens) {
+  .column {
+    float: left;
+    padding-left: .5rem;
+    padding-right: .5rem;
+
+    &.full { width: 100%; }
+    &.two-thirds { width: 66.7%; }
+    &.half { width: 50%; }
+    &.third { width: 33.3%; }
+    &.quarter { width: 25%; }
+  }
+}

@@ -1,0 +1,41 @@
+// Media Queries Mixin
+// --------------------
+
+$break-small:  25rem !default;
+$break-medium: 40rem !default;
+$break-large:  64rem !default;
+
+@mixin respond-to($media) {
+  @if $media == small-screens {
+    @media only screen and (min-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-medium) { @content; }
+  }
+  @else if $media == large-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+// Usage:
+// .profile-pic {
+//   float: left;
+//   width: 250px;
+//   @include respond-to(medium-screens) { width: 125px; }
+//   @include respond-to(wide-screens) { float: none; }
+// }
+
+
+@mixin retina-images($image-path, $width, $height) {
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx)
+    {
+      background: url(#{$image-path}) no-repeat;
+      background-size: $width $height;
+    }
+}
