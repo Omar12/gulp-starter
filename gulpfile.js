@@ -12,7 +12,7 @@ var gulp         = require('gulp'),
     uglify       = require('gulp-uglify'),
     clean        = require('gulp-rimraf'),
     useref       = require('gulp-useref'),
-    concat       = require('gulp-concat')
+    concat       = require('gulp-concat'),
     tinylr       = require('tiny-lr'),
     express      = require('express'),
     path         = require('path'),
@@ -132,7 +132,7 @@ gulp.task('clean', function(){
 });
 
 gulp.task('build', ['clean'], function(){
-  return gulp.run('html', 'styles:build', 'scripts', 'images', 'libraries');
+  return gulp.run('html', 'styles', 'scripts', 'images', 'libraries');
 });
 
-gulp.task('default', ['server', 'livereload', 'styles:dev', 'watch']);
+gulp.task('default', ['server', 'livereload', 'styles', 'watch']);
